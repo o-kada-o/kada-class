@@ -3,68 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的网页</title>
+    <title>《永夜星河》知识图谱</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: #f5f5f5;
         }
-        header {
-            background-color: #6200ea;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
+        svg {
+            display: block;
+            margin: 0 auto;
+            background-color: #ffffff;
         }
-        nav {
-            background-color: #3700b3;
-            padding: 10px;
+        .node circle {
+            stroke: #333;
+            stroke-width: 1.5px;
         }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
+        .node text {
+            font-size: 12px;
+            pointer-events: none;
         }
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-        footer {
-            background-color: #6200ea;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 20px;
-            border: 2px solid #ccc;
+        .link {
+            stroke: #999;
+            stroke-opacity: 0.6;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>欢迎来到我的网页</h1>
-    </header>
-    <nav>
-        <a href="#">首页</a>
-        <a href="#">关于我</a>
-        <a href="#">联系我</a>
-    </nav>
-    <main>
-        <h2>你好，世界！</h2>
-        <p>这是一个简单的 HTML 网页示例。你可以根据需要修改和扩展它。</p>
-        <!-- 添加图片 -->
-        <img src="2.png" alt="示例图片">
-    </main>
-    <footer>
-        <p>&copy; 2024 我的网页. 保留所有权利。</p>
-    </footer>
+    <h1 style="text-align: center;">《永夜星河》知识图谱</h1>
+    <svg width="800" height="600"></svg>
+
+    <script>
+        // 数据定义
+        const graph = {
+            nodes: [
+                { id: "凌妙妙", group: 1 },
+                { id: "慕声", group: 2 },
+                { id: "慕瑶", group: 2 },
+                { id: "柳拂衣", group: 2 },
+                { id: "任务系统", group: 3 },
+                { id: "捉妖打怪", group: 3 },
+                { id: "人妖冲突", group: 4 },
+                { id: "回归现实", group: 3 }
+            ],
+            links: [
+                { source: "凌妙妙", target: "慕声", value: 2 },
+                { source: "凌妙妙", target: "慕瑶", value: 2 },
+                { source: "凌妙妙", target: "柳拂衣", value: 2 },
+                { source: "凌妙妙", target: "任务系统", value: 3 },
+                { source: "任务系统", target: "捉妖打怪", value: 1 },
+                { source: "任务系统", target: "回归现实", value: 1 },
+                { source: "捉妖打怪", target: "人妖冲突", value: 1 },
+                { source: "凌妙妙", target: "人妖冲突", value: 2 }
+            ]
+        };
+
+        // 创建 SVG 画布
+        const svg = d3.select("svg"),
+              width = +svg.attr("width"),
+              height = +svg.attr("height");
+
+        const simulation = d3.forceSimulation(graph.nodes)
+            .force("link", d3.forceLink(graph.links).id(d => d.id).distance(100))
+            .force("charge", d3.forceManyBody().strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2));
+
+        // 绘制连线
+        const link = svg.append("g")
+            .attr("class", "links")
+            .selectAll("line")
+            .data(graph.links)
+            .enter().append("line")
+            .attr("class", "link")
+            .attr("stroke-width", d => Math.sqrt(d.value));
+
+        // 绘制节点
+        const node = svg.append("g")
+            .attr("class", "nodes")
+            .selectAll("g")
+            .data(graph.nodes)
+            .enter().append("g");
+
+        node.append("circle")
+            .attr("r", 10)
+            .attr("fill", d => d3.schemeCategory10[d.group % 10]);
+
+        node.append("text")
+            .text(d => d.id)
+            .attr("x", 12)
+            .attr("y", 3);
+
+        // 让节点和连线随物理引擎移动
+        simulation.on("tick", () => {
+            link.attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node.attr("transform", d => `translate(${d.x},${d.y})`);
+        });
+    </script>
 </body>
 </html>
