@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>咒术回战 - 音乐推荐</title>
+    <title>咒术回战 - 音乐推荐与搜索</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,6 +35,16 @@
             line-height: 1.6;
             margin-bottom: 20px;
         }
+        .video-container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .video-container video {
+            width: 100%;
+            height: auto;
+            border: 2px solid #e74c3c;
+            border-radius: 10px;
+        }
         .music-container {
             margin: 20px auto;
             max-width: 400px;
@@ -45,6 +55,15 @@
         iframe {
             display: block;
             margin: 0 auto;
+            border: none;
+        }
+        .baidu-container {
+            margin: 30px auto;
+            max-width: 1000px;
+            height: 600px;
+            border: 2px solid #f39c12;
+            border-radius: 10px;
+            overflow: hidden;
         }
         footer {
             background-color: #262626;
@@ -56,7 +75,7 @@
 </head>
 <body>
     <header>
-        <h1>咒术回战 - 音乐推荐</h1>
+        <h1>咒术回战 - 音乐推荐与搜索</h1>
     </header>
     <div class="content">
         <h2>动漫配乐精选</h2>
@@ -64,6 +83,21 @@
         <div class="music-container">
             <!-- 嵌入网易云音乐播放器 -->
             <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1898136616&auto=1&height=66"></iframe>
+        </div>
+        <h2>视频推荐</h2>
+        <p>以下是与咒术回战相关的视频推荐：</p>
+        <div class="video-container">
+            <!-- 嵌入本地视频 -->
+            <video controls>
+                <source src="541794043_nb2-1-16.mp4" type="video/mp4">
+                您的浏览器不支持视频播放，请升级或更换浏览器。
+            </video>
+        </div>
+        <h2>百度搜索</h2>
+        <p>通过下方的嵌套页面直接进行百度搜索：</p>
+        <div class="baidu-container">
+            <!-- 嵌入百度搜索页面 -->
+            <iframe src="https://www.baidu.com" width="100%" height="100%"></iframe>
         </div>
     </div>
     <footer>
