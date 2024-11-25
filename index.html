@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>咒术回战</title>
+    <title>咒术回战 - 音乐推荐</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,15 +35,16 @@
             line-height: 1.6;
             margin-bottom: 20px;
         }
-        .video-container {
+        .music-container {
             margin: 20px auto;
-            max-width: 800px;
-        }
-        .video-container video {
-            width: 100%;
-            height: auto;
-            border: 2px solid #e74c3c;
+            max-width: 400px;
+            background: #262626;
+            padding: 15px;
             border-radius: 10px;
+        }
+        iframe {
+            display: block;
+            margin: 0 auto;
         }
         footer {
             background-color: #262626;
@@ -55,17 +56,14 @@
 </head>
 <body>
     <header>
-        <h1>咒术回战</h1>
+        <h1>咒术回战 - 音乐推荐</h1>
     </header>
     <div class="content">
-        <h2>欢迎来到《咒术回战》的世界</h2>
-        <p>《咒术回战》是一部备受欢迎的热血动漫，围绕咒术师们与诅咒之间的战斗展开，充满了动作、悬疑与感动。快来探索这个奇幻而危险的世界吧！</p>
-        <div class="video-container">
-            <!-- 替换为你的本地视频文件 -->
-            <video controls>
-                <source src="541794043_nb2-1-16.mp4" type="video/mp4">
-                您的浏览器不支持视频播放，请升级或更换浏览器。
-            </video>
+        <h2>动漫配乐精选</h2>
+        <p>以下是网易云音乐的一首推荐歌曲，可以直接播放。</p>
+        <div class="music-container">
+            <!-- 嵌入网易云音乐播放器 -->
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1898136616&auto=1&height=66"></iframe>
         </div>
     </div>
     <footer>
